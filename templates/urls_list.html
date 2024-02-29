@@ -1,0 +1,47 @@
+<title>urls list</title>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container" style="margin-left: 30px">
+    <div style="margin-left: 30px">
+        <p></p>
+        <h3>web map / urls list</h3>
+<hr>
+<p></p>
+        <h7>For learning</h7><br>
+        <a href="https://www.youtube.com/watch?app=desktop&v=gQojMIhELvM&list=PLoYCgNOIyGAB_8_iq1cL8MVeun7cB6eNc&index=1"
+           style="margin-right: 20px;" target="_blank">Youtube website design</a>
+        <a href="https://www.youtube.com/watch?v=zN8YNNHcaZc"
+           style="margin-right: 20px;" target="_blank">How does internet works?</a>
+<hr>
+<p></p>
+        <h7>For show</h7><br>
+        <a href="/" style="margin-right: 20px;">home</a> <!--to root-->
+
+        <a href="{% url 'admin:index' %}" style="margin-right: 20px;">admin</a> <!--go to admin webpage-->
+
+        <a href="{% url 'main_page' %}" style="margin-right: 20px;">Main Page</a>
+<hr>
+<p></p>
+        <h7>For input</h7><br>
+        <a href="{% url 'input_index' %}" style="margin-right: 20px;">input_index</a>
+        <a href="{% url 'input_index_category' %}" style="margin-right: 20px;">input_index_category</a>
+        <a href="{% url 'input_index_and_index_category' %}" style="margin-right: 20px;">input_index_and_index_category</a>
+        <a href="{% url 'import_data_from_excel_to_model_index' %}" style="margin-right: 20px;">import_data_from_excel_to_model_index</a>
+        <a href="{% url 'input_todotask' %}" style="margin-right: 20px;">input todo task</a>
+<hr>
+<p></p>
+        <h7>For output</h7><br>
+        <a href="{% url 'output_index_list' %}" style="margin-right: 20px;">output_index_list</a>
+        <a href="{% url 'index_view_new' %}" style="margin-right: 20px;">index_view_new</a>
+        <a href="{% url 'export_index_to_excel' %}" style="margin-right: 20px;">export_index_list_to_excel_file</a>
+
+<hr>
+<p></p>
+        <h7>For Function</h7><br>
+        <a href="{% url 'reorder_categories' %}" style="margin-right: 20px;">reorder_categories</a>
+    </div>
+</div>
+
+{% endblock content %}
