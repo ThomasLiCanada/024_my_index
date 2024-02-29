@@ -1,0 +1,86 @@
+<!--websites/input_index.html-->
+
+<title>Input index</title>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<p></p>
+
+<div class="container block_input_index">
+    <h3>Input index</h3>
+    <p></p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+
+<!--        {{index_form}}-->
+        {{ index_form.as_p }}
+<!--        <a href="{% url 'input_index_category' %}" style="margin-right: 20px;">Add index category</a>-->
+        <a href="#" class="blue-link more-link-category" style="margin-right: 20px;">Add index category</a>
+
+        <p></p>
+
+        <button type="submit" name="index_form_submit"> Save Index</button>
+        <button type="button" onclick="cancelAction()" style="margin-left: 20px;">Cancel</button>
+
+    </form>
+</div>
+
+
+<div class="container block_input_category">
+    <p></p><br>
+    <hr>
+    <h3>Input index category</h3>
+    <p></p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{index_category_form}}
+        <p></p>
+        <button type="submit" name="index_category_form_submit"> Save Category</button>
+<!--        <a href="#" class="btn btn-info less-link-category" style="margin-right: 20px;">Cancel</a>-->
+        <button class="less-link-category" style="margin-left: 20px;">Cancel</button>
+
+    </form>
+</div>
+
+<!--get input information from search box, and then curse to the end for continue to input-->
+<script>
+    // Check if 'key_words' query parameter exists in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyWords = urlParams.get('key_words');
+
+    // If 'key_words' is not null or empty, pre-fill the input field and move cursor to end
+    if (keyWords) {
+        const keyWordsInput = document.getElementById('id_key_words');
+        keyWordsInput.value = keyWords;
+        keyWordsInput.focus(); // Set focus to input field
+        keyWordsInput.setSelectionRange(keyWords.length, keyWords.length); // Move cursor to end of input
+    }
+</script>
+
+<!--show add index category block-->
+<script>
+$(document).ready(function(){
+    // Initially hide block2
+    $('.block_input_category').hide();
+
+    // When "More ... ..." is clicked
+    $('.more-link-category').click(function(){
+        $('.block_input_category').show();
+    });
+
+        // When "Less ... ..." is clicked
+    $('.less-link-category').click(function(){
+        $('.block_input_category').hide();
+    });
+
+});
+
+</script>
+
+<!--add index form, cancel button function-->
+<script>
+    function cancelAction() {
+        window.location.href = '/';  // Redirect to the root URL
+    }
+</script>
+
+{% endblock content %}

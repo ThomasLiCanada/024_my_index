@@ -1,0 +1,78 @@
+<!-- websites/input_todo_tasks.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+    /* CSS styles for input boxes */
+    input {
+        width: 100%;  /* Adjust the width as needed */
+        height: 40px; /* Adjust the height as needed */
+    }
+
+    .error-message {
+        color: red;
+    }
+</style>
+
+<div class="container">
+    <p></p>
+    <h5>To do task</h5>
+    <p></p>
+    <form method="post" enctype="multipart/form-data" id="todoForm">{% csrf_token %}
+        <input name="task_name" placeholder="input task..." required autofocus onkeydown="focusNextInput(event, 'task_reminder1_date')">
+        <br>
+        <p></p>
+
+<!--        <input id="task_reminder1_date" name="task_reminder1_date" placeholder="1st reminder date yyyy-mm-dd..." onkeydown="focusNextInput(event, 'task_reminder2_date')">-->
+        <input id="task_reminder1_date" name="task_reminder1_date" placeholder="reminder date yyyy-mm-dd..." onkeydown="focusNextInput(event, 'task_due_date')">
+        <br>
+        <p></p>
+
+<!--        <input id="task_reminder2_date" name="task_reminder2_date" placeholder="2nd reminder date yyyy-mm-dd..." onkeydown="focusNextInput(event, 'task_due_date')">-->
+<!--        <br>-->
+<!--        <p></p>-->
+
+<!--        <input id="task_due_date" name="task_due_date" placeholder="due date yyyy-mm-dd..." onkeydown="focusNextInput(event, 'todotask_form_submit')">-->
+        <input id="task_due_date" name="task_due_date" placeholder="due date yyyy-mm-dd..." onkeydown="focusNextInput(event, null, 'todotask_form_submit')">
+
+        <br>
+
+        {% if todotask_form.errors %}
+            <div class="error-message">Date format should be yyyy-mm-dd</div>
+        {% endif %}
+
+        <p></p>
+        <button id="todotask_form_submit" type="submit" style="width: 100%; padding: 5px 0;" name="todotask_form_submit"> Save</button>
+    </form>
+</div>
+
+<script>
+    function focusNextInput(event, nextInputId, submitButtonId) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (nextInputId) {
+                document.getElementById(nextInputId).focus();
+            } else if (submitButtonId) {
+                document.getElementById(submitButtonId).focus();
+            }
+        }
+    }
+
+    // Enable datepicker for date fields
+    $(document).ready(function () {
+        $("#task_reminder1_date, #task_reminder2_date, #task_due_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+
+
+{% endblock content %}

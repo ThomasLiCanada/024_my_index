@@ -1,0 +1,40 @@
+<!--websites/input_index.html-->
+
+<title>Input index</title>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<p></p>
+
+<div class="container">
+    <h3>Input index</h3>
+    <p></p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+
+<!--        {{index_form}}-->
+        {{ index_form.as_p }}
+        <a href="{% url 'input_index_category' %}" style="margin-right: 20px;">Add index category</a>
+
+        <p></p>
+
+        <button type="submit" name="index_form_submit"> Save Index</button>
+
+    </form>
+</div>
+
+<script>
+    // Check if 'key_words' query parameter exists in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyWords = urlParams.get('key_words');
+
+    // If 'key_words' is not null or empty, pre-fill the input field and move cursor to end
+    if (keyWords) {
+        const keyWordsInput = document.getElementById('id_key_words');
+        keyWordsInput.value = keyWords;
+        keyWordsInput.focus(); // Set focus to input field
+        keyWordsInput.setSelectionRange(keyWords.length, keyWords.length); // Move cursor to end of input
+    }
+</script>
+
+{% endblock content %}

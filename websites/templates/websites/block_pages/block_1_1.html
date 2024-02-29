@@ -1,0 +1,72 @@
+<!--block_1_1.html-->
+
+<!--    block1 start -->
+<div class="col-md-4 block1">
+    <div class="card card-body">
+        <h6>Frequent (all)</h6>
+        <div class="row"> <!-- Create an inner row for the links -->
+            <div class="col"> <!-- Use col to evenly distribute the links within the column -->
+                {% for index in indexes|slice:":6" %}
+                    <a href="{{ index.address }}" target="_blank" onclick="recordClick({{ index.id }})" class="blue-link">{{index.key_words}}</a>
+                    <br>
+                {% endfor %}
+            </div>
+            <div class="col"> <!-- Another column for the second set of links -->
+                {% for index in indexes|slice:"6:11" %}
+                    <a href="{{ index.address }}" target="_blank" onclick="recordClick({{ index.id }})" class="blue-link">{{index.key_words}}</a>
+                    <br>
+                {% endfor %}
+                <!-- Check if there are more than 11 links -->
+                {% if indexes|length > 11 %}
+                    <a href="#" class="blue-link more-link"  style="margin-left: 90%;"><i class="fas fa-angle-double-down"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!--   block1 end-->
+
+
+<!--    block2  start -->
+<div class="col-md-4 block2">
+    <div class="card card-body">
+        <h6>Frequent (all)</h6>
+        <div class="row"> <!-- Create an inner row for the links -->
+            <div class="col"> <!-- Use col to evenly distribute the links within the column -->
+                {% for index in indexes_first_column %}
+                    <a href="{{ index.address }}" target="_blank" onclick="recordClick({{ index.id }})" class="blue-link">{{ index.key_words }}</a>
+                    <br>
+                {% endfor %}
+
+            </div>
+            <div class="col"> <!-- Another column for the second set of links -->
+                {% for index in indexes_second_column %}
+                    <a href="{{ index.address }}" target="_blank" onclick="recordClick({{ index.id }})" class="blue-link">{{ index.key_words }}</a>
+                    <br>
+                {% endfor %}
+                <a href="#" class="blue-link less-link" style="margin-left: 90%;"><i class="fas fa-angle-double-up" ></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--   block2 end-->
+
+<script>
+$(document).ready(function(){
+    // Initially hide block2
+    $('.block2').hide();
+
+    // When "More ... ..." is clicked
+    $('.more-link').click(function(){
+        $('.block1').hide();
+        $('.block2').show();
+    });
+
+    // When "Less" is clicked
+    $('.less-link').click(function(){
+        $('.block2').hide();
+        $('.block1').show();
+    });
+});
+
+</script>

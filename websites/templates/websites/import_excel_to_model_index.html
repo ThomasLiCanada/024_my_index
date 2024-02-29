@@ -1,0 +1,16 @@
+<!-- import_data_form.html -->
+<title>Input index</title>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<p></p>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="excel_file">Upload Excel File:</label>
+    <input type="file" name="excel_file" accept=".xlsx">
+    <button type="submit">Import Data</button>
+</form>
+
+{% endblock content %}

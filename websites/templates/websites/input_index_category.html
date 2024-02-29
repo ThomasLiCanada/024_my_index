@@ -1,0 +1,21 @@
+<!--websites/input_index_category.html-->
+
+<title>Input category</title>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<p></p>
+<div class="container">
+    <h3>Input index category</h3>
+    <p></p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+
+        {{index_category_form}}
+<p></p>
+        <button type="submit" name="index_category_form_submit"> Save Category</button>
+
+    </form>
+</div>
+
+{% endblock content %}
